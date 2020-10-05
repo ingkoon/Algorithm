@@ -11,10 +11,10 @@ def solution(skill, skill_trees):
             temp.append([skill_trees[j][k],k])
         eval2.append(temp)
         temp = []
-    
-    return answer
+
+    return eval2
 skill = "CBD"
 
 skill_trees = ["BACDE", "CBADF", "AECB", "BDA"]
 
-print(solution(skill, skill_trees))
+print(solution(skill, skill_trees[0][1]))

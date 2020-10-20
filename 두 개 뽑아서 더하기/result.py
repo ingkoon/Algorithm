@@ -12,7 +12,7 @@ def solution(numbers):
 
     #배열의 중복값 제거
     answer = list(set(answer))
-    #배열 정렬
+    #배열 정렬!
     answer.sort()
     #배열 반환
     return answer

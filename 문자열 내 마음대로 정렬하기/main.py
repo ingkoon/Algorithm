@@ -4,3 +4,4 @@ def strange_sort(strings, n):
 
 strings = ["sun", "bed", "car"] 
 print(strange_sort(strings, 1))
+

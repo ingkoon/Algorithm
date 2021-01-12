@@ -1,6 +1,5 @@
 a, b = (map(int, input().split(' ')))
-print(a)
-print(b)
+
 arr = []
 
 for i in range(a):
@@ -17,3 +16,4 @@ for j in range(len(arr)):
 
 print(cnt)
     
+

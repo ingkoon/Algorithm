@@ -5,11 +5,9 @@ def solution(skill, skill_trees):
         for j in skill:
             if i.index(j):
                 result.append(j)
-            else:
-                continue
             print(result)
         print("-----------")
-        
+
     return answer
 skill = "CBD"
 

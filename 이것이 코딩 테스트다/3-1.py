@@ -1,4 +1,5 @@
 def change(n):
+    #총 4개의 경우에 대한 조건문 정의를 통해 문제 해결
     result_arr = [0,0,0,0]
     while n != 0:
         if n >= 500:

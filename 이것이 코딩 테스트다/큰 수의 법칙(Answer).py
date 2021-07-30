@@ -1,25 +1,3 @@
-<<<<<<< HEAD
-n, m, k = map(int, input().split())
-data = list(map(int, input().split()))
-
-data.sort()
-first = data[n-1]
-second = data[n-2]
-
-result = 0
-
-while True:
-    for i in range(k):
-        if m == 0:
-            break
-        result += first
-        m -= 1
-    if m == 0:
-        break;
-    result += second
-    m -= 1
-    
-=======
 def biggestNum(arr1,arr2):
     #배열 정렬 먼저 수행
     arr2.sort()
@@ -58,5 +36,4 @@ arr2 = [2,4,5,4,6]
 result = biggestNum(arr1,arr2)
 
 # 반환된 결과값 출력
->>>>>>> b3e516c2b101674e166bf488277b09b38f35e4b7
 print(result)

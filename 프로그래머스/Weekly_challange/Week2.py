@@ -43,8 +43,7 @@ def solution(scores):
 
     # 반복문으로 평균값 계산 후 처리
     for n, m in zip(result, cnt):
-        avg = i/j
-        print(avg)
+        avg = n/m        
         if avg >= 90:
             answer += 'A'
         elif 90 > avg and avg >= 80:
@@ -60,4 +59,4 @@ def solution(scores):
 
 scores = [[100,90,98,88,65],[50,45,99,85,77],[47,88,95,80,67],[61,57,100,80,65],[24,90,94,75,65]]
 
-solution(scores)
+print(solution(scores))

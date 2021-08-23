@@ -1,3 +1,4 @@
+# 임계값 지정
 def solution(arr):
 
     arr.sort()

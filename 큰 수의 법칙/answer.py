@@ -20,16 +20,7 @@ maxVal = data[-1]
 maxValSub = data[-2]
 
 # 결과값 변수 할당
-result = 0
-
-# 반복 연산 수행
-while m:
-    if m % k == 0:
-        result += maxValSub
-    else:
-        result += maxVal
-    m -= 1
+result = maxVal * (m - m % k) + maxValSub * (m % k)
 
 print(result)
-
 

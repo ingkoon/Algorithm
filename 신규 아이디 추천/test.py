@@ -6,12 +6,4 @@ def solution(new_id):
     
     new_id = new_id.lower()
     
-    for i in range(len(new_id)):
-        
-        
-    
-    
-    
-    
-    
     return answer

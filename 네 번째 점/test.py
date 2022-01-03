@@ -32,7 +32,7 @@ firstVal = list(set(first))
 secondVal = list(set(second))
 
 
-for i in range(len(firstVal)):
+for i in range(len(firstVal)):  
     if first.count(firstVal[i])%2 != 0:
         resultFirst = firstVal[i]
 

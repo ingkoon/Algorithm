@@ -16,35 +16,47 @@
 4 6
 
 2
+
 '''
 
-import sys
+import sys 
 
-answer = 0
+# 이 개자식이 왜 재귀 제한을 걸어 뒀을까
+sys.setrecursionlimit(10**6)
 
+# 정점과 간선의 개수를 입력받는다
 n, m = map(int, sys.stdin.readline().split())
 
-graph = { i:[] for i in range(1, n+1)}
-visited = [False] * (n +1)
+# {1:[], 2:[], 3:[] .... } 이런 딕셔너리 형식으로 구성이 된다
+graph = [[] for i in range(n)]
 
+# 방문한 정점에 대해서 True표시를 할 것이기 때문에 배열 지정
+visited = [False for i in range(n + 1)]
+
+# 각각의 정점에 대한 입력을 받아 딕셔너리에 추가
 for _ in range(m):
-    u, v = map(int, sys.stdin.readline().split())
-    graph[u].append(v)
+    k, v = map(int, sys.stdin.readline().split())
+    graph[k-1].append(v-1)
+    graph[v-1].append(k-1)
 
 
 def dfs(visited, v):
+    # 방문 되지 않은 정점일 경우 방문 체크
     if visited[v] == False:
-        visited[v] = True
-        for i in graph[v]:
-            if not visited[i]:
-                print('next part is', i)
-                dfs(visited, i)
-            return True
+        visited[v] = True        
+        # 해당 정점에 연결된 다른 정점을 모두 조회 및 dfs 재귀 수행 
+        for i in graph[v]:            
+            if visited[i] == False:                                
+                dfs(visited, i)       
+        # 참값 반환
+        return True
+    # 없을 경우 False 반환
     return False
 
+result = 0
 
-for i in range(1, n):
+for i in range(n):
     if dfs(visited, i) == True:
-        answer += 1
+        result += 1
 
-print(answer)
+print(result)

@@ -32,3 +32,16 @@ RRRRR
 예제 출력1
 4 3
 '''
+import sys
+
+sys.setrecursionlimit(10 ** 6)
+
+n = int(sys.stdin.readline())
+
+pic = []
+
+for _ in range(n):
+    pic.append(list(sys.stdin.readline().rstrip()))
+
+
+print(pic)

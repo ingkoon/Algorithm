@@ -65,45 +65,64 @@
 5
 1
 
+
+1
+5 3 6
+0 2
+1 2
+2 2
+3 2
+4 2
+4 0
+
+
 '''
 
 import sys
 
+# 재귀 제한 
+sys.setrecursionlimit(10**6)
+
+# 반복을 위한 수 지정
 t = int(sys.stdin.readline())
 
-m,n,k = map(int, sys.stdin.readline().split())
 
-arr = [[0 for i in range(n)] for i in range(m)]
-
-for _ in range(k):
-    x, y = map(int, sys.stdin.readline().split())
-    arr[x][y] = 1
-
+# dfs
 def dfs(x, y):
-    if x < 0 and x >= m and y < 0 and y >= n:
+    # 배열의 크기를 벗어나면 False반환
+    if x <= -1 or x >= m or y <= -1 or y >= n:
         return False
+
+    # 배추흰지렁이가 있을 경우
     if arr[x][y] == 1:
+
         arr[x][y] = 0
         dfs(x + 1, y)
         dfs(x - 1, y)
         dfs(x, y + 1)
         dfs(x, y - 1)
         return True
-
+    # 없을 경우 False 반환
     return False
 
-result = 0
+# t만큼 반복 수행
+for _ in range(t):
+    # 가로 세로 배추 흰 지렁이 개수 지정
+    n, m, k = map(int, sys.stdin.readline().split())
+    arr = [[0 for i in range(n)] for _ in range(m)]
 
-for i in range(n):
-    for j in range(m):
-        if dfs(i,j) == True:
-            result += 1 
+    # 배추 흰지렁이 좌표 지정
+    for _ in range(k):
+        x, y = map(int, sys.stdin.readline().split())
+        arr[y][x] = 1
 
-print(result)
+    # 결과 변수 할당
+    result = 0
 
-    
-    
+    # 2차 for 문으로 각각의 위치 검사
+    for i in range(m):
+        for j in range(n):
+            if dfs(i,j) == True:
+                result += 1 
 
-
-
-
+    print(result)

@@ -33,15 +33,50 @@ RRRRR
 4 3
 '''
 import sys
-
 sys.setrecursionlimit(10 ** 6)
 
 n = int(sys.stdin.readline())
-
 pic = []
 
 for _ in range(n):
     pic.append(list(sys.stdin.readline().rstrip()))
 
-
 print(pic)
+moveX = [1, 0, -1, 0]
+moveY = [0, 1, 0, -1]
+
+def dfs(x, y):
+    print("color is", pic[y][x])
+    visited[y][x] = 1
+    for i in range(4):
+        nX = x + moveX[i]
+        nY = y + moveY[i]      
+        if 0 <= nX < n and 0 <= nY < n:
+            if pic[y][x] == pic[nY][nX] and visited[nY][nX] == 0  :
+                dfs(nX ,nY)
+
+visited = [[0] * n for _ in range(n)]
+threeCnt = 0
+for i in range(n):
+    for j in range(n):
+        if visited[i][j] == 0:            
+            threeCnt += 1
+            dfs(i,j)
+
+visited = [[0] * n for _ in range(n)]            
+for i in range(n):
+    for j in range(n):
+        if pic[i][j] == 'G':
+            pic[i][j] = 'R'
+print(pic)            
+print("--------------------------------")
+
+twoCnt = 0
+for i in range(n):
+    for j in range(n):
+         if visited[i][j] == 0:            
+            twoCnt += 1
+            dfs(i,j)
+
+print(threeCnt, twoCnt)
+

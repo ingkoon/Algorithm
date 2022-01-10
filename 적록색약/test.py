@@ -35,48 +35,52 @@ RRRRR
 import sys
 sys.setrecursionlimit(10 ** 6)
 
+def dfs(x, y):      
+    visited[x][y] = True
+    Val = pic[x][y]
+    for i in range(4):
+        nX = x + moveX[i]
+        nY = y + moveY[i]      
+        if (0 <= nX < n) and (0 <= nY < n):
+            if Val == pic[nX][nY] and visited[nX][nY] == False:                                                  
+                dfs(nX, nY)                
+
+
 n = int(sys.stdin.readline())
+
 pic = []
 
 for _ in range(n):
     pic.append(list(sys.stdin.readline().rstrip()))
 
-print(pic)
-moveX = [1, 0, -1, 0]
-moveY = [0, 1, 0, -1]
+moveX = [1, -1, 0, 0]
+moveY = [0, 0, 1, -1]
 
-def dfs(x, y):
-    print("color is", pic[y][x])
-    visited[y][x] = 1
-    for i in range(4):
-        nX = x + moveX[i]
-        nY = y + moveY[i]      
-        if 0 <= nX < n and 0 <= nY < n:
-            if pic[y][x] == pic[nY][nX] and visited[nY][nX] == 0  :
-                dfs(nX ,nY)
+visited = [[False] * n for _ in range(n)]
 
-visited = [[0] * n for _ in range(n)]
 threeCnt = 0
 for i in range(n):
     for j in range(n):
-        if visited[i][j] == 0:            
+        if visited[i][j] == False:     
+            dfs(i,j)       
             threeCnt += 1
-            dfs(i,j)
+           
 
-visited = [[0] * n for _ in range(n)]            
+
 for i in range(n):
     for j in range(n):
         if pic[i][j] == 'G':
             pic[i][j] = 'R'
-print(pic)            
-print("--------------------------------")
 
 twoCnt = 0
+visited = [[False] * n for _ in range(n)]     
 for i in range(n):
     for j in range(n):
-         if visited[i][j] == 0:            
+         if visited[i][j] == False:                 
+            dfs(i,j)       
             twoCnt += 1
-            dfs(i,j)
+            
 
 print(threeCnt, twoCnt)
+
 

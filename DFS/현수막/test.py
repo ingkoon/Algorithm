@@ -39,8 +39,6 @@ ANT가 처음 알고리즘 대회를 개최하게 되면서 현수막을 내걸�
 import sys
 sys.setrecursionlimit(10**6)
 
-
-
 def dfs(y, x):
     graph[y][x] = 0
     for i in range(4):
@@ -53,7 +51,7 @@ m, n = map(int, sys.stdin.readline().split())
 dx = [1, -1, 0, 0, 1, -1, 1, -1]
 dy = [0, 0, 1, -1, 1, 1, -1, -1]
 
-graph = [list(map(int, input().split())) for _ in range(m)]
+graph = [list(map(int, sys.stdin.readline().split())) for _ in range(m)]
 
 result = 0
 

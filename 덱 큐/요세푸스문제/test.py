@@ -24,8 +24,6 @@ n, k = map(int, sys.stdin.readline().split())
 
 queue = deque([i for i in range(1, n + 1)])
 
-print(queue)
-
 result = []
 cnt = 0
 while queue:

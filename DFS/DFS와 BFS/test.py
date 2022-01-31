@@ -9,50 +9,45 @@
 # 입력으로 주어지는 간선은 양방향이다.
 
 # 첫째 줄에 DFS를 수행한 결과를, 그 다음 줄에는 BFS를 수행한 결과를 출력한다. V부터 방문된 점을 순서대로 출력하면 된다.
+# Depth First Search
+def dfs(n):
+    print(n, end=' ')
+    visited[n] = True
+    for i in graph[n]:
+        if not visited[i]:
+            dfs(i)
 
-import sys
-from collections import deque
-def dfs(graph, v, visited):
-    visited[v] = True
-    print(v, end =' ')
-    # print('visited', v)
-    for i in graph[v]:        
-        if not visited[i]:    
-            # print('we will visit', i)    
-            dfs(graph, i, visited)
-
-
-def bfs(graph, v, visited):
-    queue = deque([v])
-
-    visited[v] = True
-
+# Breadth First Search
+def bfs(n):
+    visited[n] = True
+    queue = deque([n])
     while queue:
-        val = queue.popleft()
-        print(val, end = ' ')
-        for i in graph[val]:
+        v = queue.popleft()
+        print(v, end= ' ')
+        for i in graph[v]:
             if not visited[i]:
                 queue.append(i)
                 visited[i] = True
 
+import sys
+from collections import deque
+
+# node, branch, first node
 n, m, v = map(int, sys.stdin.readline().split())
+graph = [[] for _ in range(n+1)]
+visited = [False] * (n + 1)
 
-graph = [[] for i in range(n+1)]
-
-for i in range(1, m+1):
-    x, y = list(map(int, sys.stdin.readline().split()))
-    graph[x].append(y)
-    graph[y].append(x)
-
-for i in range(len(graph)):
+# make adjacency list
+for _ in range(m):
+    a, b = map(int, sys.stdin.readline().split())
+    graph[a].append(b)
+    graph[b].append(a)
+# sort adjacency list
+for i in range(1, n+1):
     graph[i].sort()
-print(graph)
 
-visited = [False] * (m + 1)
-
-dfs(graph,v, visited)
-
-visited = [False] * (m + 1)
-
-bfs(graph,v, visited)
-
+dfs(v)
+# initialize check list
+visited = [False] * (n + 1)
+print()
+bfs(v)

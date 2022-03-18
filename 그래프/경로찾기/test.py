@@ -23,8 +23,7 @@ n = int(sys.stdin.readline())
 
 g = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
 
-#플로이드-워셜 알고리즘
-for k in range(n): #경로 for문이 가장 상위 단계여야 누락되지 않는다
+for k in range(n):
     for i in range(n):
         for j in range(n): 
             if g[i][j] == 1 or (g[i][k] == 1 and g[k][j] == 1):

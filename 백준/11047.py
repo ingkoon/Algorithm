@@ -1,3 +1,6 @@
+
+#11047.py
+
 a, b = (map(int, input().split(' ')))
 
 arr = []

@@ -141,6 +141,7 @@ permissions:
   contents: read
   pull-requests: write
   issues: write
+  id-token: write   # claude-code-action OIDC 토큰 발급에 필수
 
 jobs:
   review:

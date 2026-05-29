@@ -1,0 +1,32 @@
+name: Claude PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "java_algorithm/src/leetcode/**"
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Claude Code Review
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            이 PR은 LeetCode 풀이입니다. 한국어로 리뷰해 주세요:
+            1. 정확성 / 엣지 케이스 누락
+            2. 시간·공간 복잡도 평가 및 개선 여지
+            3. 가독성·네이밍 (패키지 컨벤션 leetcode<번호>)
+            4. 더 나은 자료구조/알고리즘 제안
+            칭찬보다 개선점 위주로, 코드 라인 단위로 코멘트.

@@ -5,6 +5,8 @@ on:
     types: [opened, synchronize, reopened]
     paths:
       - "java_algorithm/src/leetcode/**"
+      - "java_algorithm/src/boj/**"
+      - "java_algorithm/src/programmers/**"
 
 permissions:
   contents: read
@@ -24,10 +26,22 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          track_progress: true
           prompt: |
-            이 PR은 LeetCode 풀이입니다. 한국어로 리뷰해 주세요:
-            1. 정확성 / 엣지 케이스 누락
-            2. 시간·공간 복잡도 평가 및 개선 여지
-            3. 가독성·네이밍 (패키지 컨벤션 leetcode<번호>)
-            4. 더 나은 자료구조/알고리즘 제안
-            칭찬보다 개선점 위주로, 코드 라인 단위로 코멘트.
+            이 PR은 LeetCode/알고리즘 풀이입니다. 이 PR의 변경된 코드에 대해
+            한국어로 코드리뷰를 작성해 주세요. 아래 두 가지를 중심으로 봐 주세요.
+
+            ## 1. 코드 스타일
+            - 네이밍 컨벤션 (패키지 leetcode<번호>/boj<번호>/programmers<번호>, 변수·메서드명이 의도를 드러내는지)
+            - 가독성: 중복 코드, 매직 넘버, 불필요하게 복잡한 분기
+            - Java 관용 표현 활용 (향상된 for문, 컬렉션 API, 적절한 자료형 선택 등)
+
+            ## 2. 시간복잡도 최적화
+            - 현재 풀이의 시간·공간 복잡도를 Big-O로 명시
+            - 불필요한 반복/중첩 루프, 비효율적 자료구조 사용 지적
+            - 더 빠른 알고리즘이나 자료구조가 있다면 구체적으로 제안
+
+            ## 리뷰 방식
+            - 지적할 부분은 해당 코드 라인에 인라인 코멘트로 남겨 주세요.
+            - 마지막에 전체 요약(핵심 개선점 1~3개)을 정리해 주세요.
+            - 칭찬보다 개선점 위주로, 근거와 함께 구체적으로 작성해 주세요.

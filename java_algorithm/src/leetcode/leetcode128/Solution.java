@@ -7,20 +7,22 @@ import java.util.Set;
 class Solution {
     public int longestConsecutive(int[] nums) {
         Set<Integer> set = new HashSet<>();
-        for(int num : nums) {
+        for (int num : nums) {
             set.add(num);
         }
+
         int result = 0;
-        for(int num : set) {
-            if(set.contains(num - 1)) {
+        for (int num : set) {
+            if (set.contains(num - 1)) {
                 continue;
             }
-            int tmp = 0;
-            while(set.contains(num)) {
-                tmp++;
-                num++;
+            int currentStreak = 0;
+            int cur = num;
+            while(set.contains(cur)) {
+                currentStreak++;
+                cur++;
             }
-            result = Math.max(result, tmp);
+            result = Math.max(result, currentStreak);
         }
         return result;
     }

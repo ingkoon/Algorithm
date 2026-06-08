@@ -4,9 +4,8 @@ import java.util.*;
 
 public class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        ListNode result = new ListNode(0);
-        ListNode cur = result;
-        int size = 0;
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
 
         PriorityQueue<ListNode> pq = new PriorityQueue<>(new Comparator<ListNode>() {
             @Override
@@ -24,15 +23,17 @@ public class Solution {
 
         while (!pq.isEmpty()) {
             ListNode node = pq.poll();
-            cur.next = new ListNode(node.val);
+            cur.next = node;
             cur = cur.next;
-            node = node.next;
-            if (node == null)
+
+            ListNode next = node.next;
+            node.next = null;
+            if (next == null)
                 continue;
-            pq.offer(node);
+            pq.offer(next);
         }
 
-        result = result.next;
+        ListNode result = dummy.next;
         return result;
     }
 

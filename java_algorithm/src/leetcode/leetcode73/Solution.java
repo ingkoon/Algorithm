@@ -24,7 +24,6 @@ public class Solution {
     }
 
     private void update(int r, int c, int[][] matrix) {
-        Queue<int[]> queue = new LinkedList<>();
         for (int i = 0; i < 4; i++) {
             int nr = r;
             int nc = c;
@@ -39,6 +38,6 @@ public class Solution {
     }
 
     private boolean isCheck(int r, int c, int pr, int pc) {
-        return 0 <= pr && pr < r && 0 <= pc & pc < c;
+        return 0 <= pr && pr < r && 0 <= pc && pc < c;
     }
 }

@@ -1,6 +1,7 @@
 package leetcode.leetcode54;
 
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
@@ -10,7 +11,7 @@ public class Solution {
         int right = matrix[0].length - 1;
         List<Integer> result = new ArrayList<>();
 
-        while(top <= bottom && left <= right) {
+        while (top <= bottom && left <= right) {
             for (int i = left; i <= right; i++) {
                 result.add(matrix[top][i]);
             }

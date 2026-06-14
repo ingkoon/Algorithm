@@ -5,7 +5,7 @@ import java.util.*;
 public class Solution {
     public int lengthOfLongestSubstring(String s) {
         if (s.length() <= 1) {
-            return 1;
+            return s.length();
         }
         int start = 0;
         int end = 1;

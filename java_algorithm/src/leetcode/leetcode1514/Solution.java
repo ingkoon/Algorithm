@@ -45,7 +45,7 @@ public class Solution {
         return dist[end_node];
     }
 
-    class Node {
+    static class Node {
         int des;
         double dis;
 

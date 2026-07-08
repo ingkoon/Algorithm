@@ -10,7 +10,7 @@ public class Solution {
     public int networkDelayTime(int[][] times, int n, int k) {
         List<Node>[] lists = new ArrayList[n + 1];
         boolean[] visited = new boolean[n + 1];
-        final int INF = 10000001;
+        final int INF = Integer.MAX_VALUE / 2;
         for (int i = 0; i <= n; i++) {
             lists[i] = new ArrayList<>();
         }
@@ -27,11 +27,12 @@ public class Solution {
         pq.offer(new Node(k, 0));
         while (!pq.isEmpty()) {
             Node pNode = pq.poll();
+            if (visited[pNode.des])
+                continue;
+
             visited[pNode.des] = true;
             List<Node> list = lists[pNode.des];
             for (Node next : list) {
-                if (visited[next.des])
-                    continue;
                 int nextVal = pNode.dis + next.dis;
                 if (dist[next.des] > nextVal) {
                     dist[next.des] = nextVal;

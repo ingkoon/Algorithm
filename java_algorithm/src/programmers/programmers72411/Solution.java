@@ -6,16 +6,21 @@ public class Solution {
     static List<String>[] arr;
 
     public String[] solution(String[] orders, int[] course) {
+
+        /**
+         * course 배열의 크기는 1 이상 10 이하입니다.
+         * course 배열의 각 원소는 2 이상 10 이하인 자연수가 오름차순으로 정렬되어 있습니다.
+         * course 배열에는 같은 값이 중복해서 들어있지 않습니다.
+         */
         arr = new ArrayList[course[course.length - 1] + 1];
 
         for (int i = 0; i < arr.length; i++) {
             arr[i] = new ArrayList<>();
         }
 
-        for (int i = 0; i < course.length; i++) {
-            for (String order : orders) {
-                boolean[] visited = new boolean[order.length()];
-                combination(order, "", 0, course[i]);
+        for (int i = 0; i < orders.length; i++) {
+            for (int courseSize : course) {
+                combination(orders[i], "", 0, courseSize);
             }
         }
 
@@ -41,9 +46,7 @@ public class Solution {
                 }
             }
 
-            for (String s : maxList) {
-                result.add(s);
-            }
+            result.addAll(maxList);
         }
 
         String[] answer = result.toArray(new String[0]);
